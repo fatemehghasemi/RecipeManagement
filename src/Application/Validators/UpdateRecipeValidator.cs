@@ -1,11 +1,11 @@
-﻿using Application.Recipe.ResponseModels;
+﻿using Application.Recipes.Commands;
 using FluentValidation;
 
 namespace Application.Validators
 {
-    public class RecipeValidator : AbstractValidator<RecipeResponse>
+    public class UpdateRecipeValidator : AbstractValidator<UpdateRecipeCommand>
     {
-        public RecipeValidator()
+        public UpdateRecipeValidator()
         {
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage("Title is required.")
