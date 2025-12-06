@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Domain.Common;
 using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 
@@ -24,12 +25,12 @@ public static class GlobalExceptionMiddleware
                     var messages = valEx.Errors.Select(e => e.ErrorMessage).ToList();
                     var msg = string.Join(" | ", messages);
 
-                    jsonResponse = JsonSerializer.Serialize(Result.Fail(msg, "VALIDATION_ERROR"));
+                    jsonResponse = JsonSerializer.Serialize(Result<string>.Fail(msg,400));
                 }
                 else
                 {
                     context.Response.StatusCode = 500;
-                    jsonResponse = JsonSerializer.Serialize(Result.Fail("An unexpected error occurred.", "SERVER_ERROR"));
+                    jsonResponse = JsonSerializer.Serialize(Result<string>.Fail("An unexpected error occurred.", 500));
                 }
 
                 await context.Response.WriteAsync(jsonResponse);

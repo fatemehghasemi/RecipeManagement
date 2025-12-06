@@ -14,10 +14,11 @@ namespace Infrastructure
             services.AddDbContext<RecipeDBContext>(options =>
                  options.UseSqlServer(
                         configuration.GetConnectionString("DefaultConnectionString"),
-                        sqlOptions => sqlOptions.MigrationsAssembly("Infrastructure") // مشخص کردن پروژه مایگریشن‌ها
+                        sqlOptions => sqlOptions.MigrationsAssembly("Infrastructure") 
          ));
 
             services.AddScoped<IRecipeRepository, RecipeRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddApplication();
             return services;
         }

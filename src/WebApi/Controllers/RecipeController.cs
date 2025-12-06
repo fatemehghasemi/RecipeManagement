@@ -20,7 +20,7 @@ public class RecipeController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<RecipeResponse>>> Get([FromQuery] string? tag)
     {
-        var query = new GetRecipesQuery { Tag = tag };
+        var query = new GetUserQuery { Tag = tag };
         var recipes = await _mediator.Send(query);
         return Ok(recipes);
     }
@@ -28,7 +28,7 @@ public class RecipeController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<RecipeResponse>> GetById(Guid id)
     {
-        var query = new GetRecipesQuery();
+        var query = new GetUserQuery();
         var recipes = await _mediator.Send(query);
         var recipe = recipes.FirstOrDefault(r => r.Id == id);
         if (recipe == null) return NotFound();

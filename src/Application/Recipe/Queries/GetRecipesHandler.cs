@@ -6,16 +6,16 @@ using MediatR;
 
 namespace Application.Recipes.Handlers.QueryHandlers;
 
-public class GetRecipesHandler : IRequestHandler<GetRecipesQuery, IEnumerable<RecipeResponse>>
+public class GetUserHandler : IRequestHandler<GetUserQuery, IEnumerable<RecipeResponse>>
 {
     private readonly IRecipeRepository _recipeRepository;
 
-    public GetRecipesHandler(IRecipeRepository recipeRepository)
+    public GetUserHandler(IRecipeRepository recipeRepository)
     {
         _recipeRepository = recipeRepository;
     }
 
-    public async Task<IEnumerable<RecipeResponse>> Handle(GetRecipesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<RecipeResponse>> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
         var recipes = await _recipeRepository.GetAllAsync();
 

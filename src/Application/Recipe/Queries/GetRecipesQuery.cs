@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Recipes.Queries;
 
-public class GetRecipesQuery : IRequest<IEnumerable<RecipeResponse>>
+public class GetUserQuery : IRequest<IEnumerable<RecipeResponse>>
 {
     public string? Tag { get; set; }
 }
