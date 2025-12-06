@@ -1,12 +1,10 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Builder;
+﻿using System.Text.Json;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using System.Text.Json;
 
-public static class ExceptionHandlerExtensions
+public static class GlobalExceptionMiddleware
 {
-    public static void UseResultExceptionHandler(this IApplicationBuilder app)
+    public static void UseGlobalExceptionHandler(this IApplicationBuilder app)
     {
         app.UseExceptionHandler(errorApp =>
         {
@@ -26,12 +24,12 @@ public static class ExceptionHandlerExtensions
                     var messages = valEx.Errors.Select(e => e.ErrorMessage).ToList();
                     var msg = string.Join(" | ", messages);
 
-                    jsonResponse = JsonSerializer.Serialize(AppResult.Fail(msg, "VALIDATION_ERROR"));
+                    jsonResponse = JsonSerializer.Serialize(Result.Fail(msg, "VALIDATION_ERROR"));
                 }
                 else
                 {
                     context.Response.StatusCode = 500;
-                    jsonResponse = JsonSerializer.Serialize(AppResult.Fail("An unexpected error occurred.", "SERVER_ERROR"));
+                    jsonResponse = JsonSerializer.Serialize(Result.Fail("An unexpected error occurred.", "SERVER_ERROR"));
                 }
 
                 await context.Response.WriteAsync(jsonResponse);

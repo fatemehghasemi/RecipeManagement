@@ -1,10 +1,10 @@
-﻿public class AppResult
+﻿public class Result
 {
     public bool Success { get; set; }
     public string? Code { get; set; }
     public string? Message { get; set; }
 
-    public static AppResult Fail(string message, string code) => new AppResult
+    public static Result Fail(string message, string code) => new Result
     {
         Success = false,
         Message = message,
