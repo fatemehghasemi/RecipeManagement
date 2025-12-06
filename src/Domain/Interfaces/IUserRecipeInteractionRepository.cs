@@ -4,7 +4,6 @@ namespace Domain.Interfaces;
 
 public interface IUserRecipeInteractionRepository
 {
-    Task AddInteractionAsync(UserRecipeInteraction interaction);
-    Task<IEnumerable<UserRecipeInteraction>> GetByUserIdAsync(long userId);
-    Task SaveChangesAsync();
+    Task AddAsync(UserRecipeInteraction interaction);
+    Task<IEnumerable<UserRecipeInteraction>> GetByUserIdAsync(Guid userId);
 }
