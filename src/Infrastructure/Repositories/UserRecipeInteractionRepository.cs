@@ -17,7 +17,11 @@ public class UserRecipeInteractionRepository : IUserRecipeInteractionRepository
         await _context.UserRecipeInteractions.AddAsync(interaction);
         await _context.SaveChangesAsync();
     }
-
+    public async Task UpdateAsync(UserRecipeInteraction interaction)
+    {
+        _context.UserRecipeInteractions.Update(interaction);
+        await _context.SaveChangesAsync();
+    }
     public async Task<IEnumerable<UserRecipeInteraction>> GetByUserIdAsync(Guid userId)
     {
         return await _context.UserRecipeInteractions

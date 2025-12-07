@@ -30,9 +30,7 @@ public class RecipeController : ControllerBase
     {
         var query = new GetUserQuery();
         var recipes = await _mediator.Send(query);
-        var recipe = recipes.FirstOrDefault(r => r.Id == id);
-        if (recipe == null) return NotFound();
-        return Ok(recipe);
+        return Ok(recipes);
     }
 
     [HttpPost]

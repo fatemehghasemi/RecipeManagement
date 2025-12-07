@@ -16,7 +16,7 @@ namespace Infrastructure
                         configuration.GetConnectionString("DefaultConnectionString"),
                         sqlOptions => sqlOptions.MigrationsAssembly("Infrastructure") 
          ));
-
+            services.AddScoped<IUserRecipeInteractionRepository, UserRecipeInteractionRepository>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddApplication();
