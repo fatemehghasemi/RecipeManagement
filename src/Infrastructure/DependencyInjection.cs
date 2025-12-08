@@ -1,5 +1,4 @@
-﻿using Application;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +18,6 @@ namespace Infrastructure
             services.AddScoped<IUserRecipeInteractionRepository, UserRecipeInteractionRepository>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddApplication();
             return services;
         }
     }

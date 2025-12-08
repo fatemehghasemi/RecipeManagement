@@ -10,6 +10,8 @@ namespace Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Application.Recipe.Queries.GetByTagQueriesCommandHandler).Assembly));
+
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
             services.AddValidatorsFromAssemblyContaining<AddRecipeValidator>();
